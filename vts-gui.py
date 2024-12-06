@@ -39,9 +39,8 @@ class WhisperApp(tk.Tk):
         self.geometry("600x700")
         
         # Set the window icon
-        icon_path = "favicon.ico"
-        if os.path.exists(icon_path):
-            self.iconbitmap(icon_path)
+        icon_name = "favicon.ico"
+        self.iconbitmap(icon_name)
         
         # Prepare languages without 'Auto Detect' for translation
         self.languages_no_auto = [lang for lang in languages if lang != "Auto Detect"]
@@ -191,13 +190,7 @@ class WhisperApp(tk.Tk):
         for model in models:
             reqs = self.model_requirements[model]
             if selected_device == "CPU":
-                # Exclude 'large' model on CPU due to high RAM requirements
-                if model == 'large':
-                    self.model_menu['menu'].add_command(
-                        label=f"{model} (Not available on CPU)",
-                        state="disabled"
-                    )
-                elif available_ram >= reqs['ram']:
+                if available_ram >= reqs['ram']:
                     self.model_menu['menu'].add_command(
                         label=model,
                         command=tk._setit(self.model_var, model, self.update_controls)
