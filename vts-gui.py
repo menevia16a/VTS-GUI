@@ -72,7 +72,7 @@ class WhisperApp(tk.Tk):
             "tiny": {"ram": "~1 GB", "speed": "~10x"},
             "base": {"ram": "~1 GB", "speed": "~7x"},
             "small": {"ram": "~2 GB", "speed": "~4x"},
-            "medium": {"ram": "~5 GB", "speed": "~2x"},
+            "medium": {"ram": "~6 GB", "speed": "~2x"},
             "large": {"ram": "~20 GB", "speed": "1x"},
             "turbo": {"ram": "~6 GB", "speed": "~8x"},
         }
@@ -80,7 +80,7 @@ class WhisperApp(tk.Tk):
             "tiny": {"ram": 1, "vram": 1},
             "base": {"ram": 2, "vram": 2},
             "small": {"ram": 3, "vram": 3},
-            "medium": {"ram": 7, "vram": 6},
+            "medium": {"ram": 6, "vram": 5},
             "large": {"ram": 20, "vram": 10},
             "turbo": {"ram": 6, "vram": 5},
         }
@@ -172,82 +172,69 @@ class WhisperApp(tk.Tk):
         task = self.task_var.get()
         selected_device = self.device_var.get()
 
-        #if task.lower() == "translate":
-            # Force model to 'tiny' and disable the model menu
-            #self.model_var.set('tiny')
-            #self.model_menu.config(state=tk.DISABLED)
-
-            ## Update model_info_label to display 'tiny' model information
-            #ram = self.model_info["tiny"]["ram"]
-            #speed = self.model_info["tiny"]["speed"]
-            #self.model_info_label.config(text=f"RAM: {ram}, Speed: {speed}")
-        if True:
-            # Enable the model menu for transcription
-            self.model_menu.config(state=tk.NORMAL)
-
-            # Check available RAM and VRAM
-            available_ram = psutil.virtual_memory().available / (1024 ** 3)  # In GB
-            if selected_device == "CPU":
+        # Enable the model menu for transcription
+        self.model_menu.config(state=tk.NORMAL)
+        # Check available RAM and VRAM
+        available_ram = psutil.virtual_memory().available / (1024 ** 3)  # In GB
+        if selected_device == "CPU":
+            available_vram = 0
+        else:
+            try:
+                device_index = int(selected_device.split()[1][:-1])
+                available_vram = torch.cuda.get_device_properties(device_index).total_memory / (1024 ** 3)  # In GB
+            except (IndexError, ValueError):
                 available_vram = 0
-            else:
-                try:
-                    device_index = int(selected_device.split()[1][:-1])
-                    available_vram = torch.cuda.get_device_properties(device_index).total_memory / (1024 ** 3)  # In GB
-                except (IndexError, ValueError):
-                    available_vram = 0
-
-            # Disable models if insufficient RAM/VRAM
-            models = ["tiny", "base", "small", "medium", "large", "turbo"]
-            self.model_menu['menu'].delete(0, 'end')
-            available_models = []
-            for model in models:
-                reqs = self.model_requirements[model]
-                if selected_device == "CPU":
-                    # Exclude 'large' model on CPU due to high RAM requirements
-                    if model == 'large':
-                        self.model_menu['menu'].add_command(
-                            label=f"{model} (Not available on CPU)",
-                            state="disabled"
-                        )
-                    elif available_ram >= reqs['ram']:
-                        self.model_menu['menu'].add_command(
-                            label=model,
-                            command=tk._setit(self.model_var, model, self.update_controls)
-                        )
-                        available_models.append(model)
-                    else:
-                        self.model_menu['menu'].add_command(
-                            label=f"{model} (Insufficient RAM)",
-                            state="disabled"
-                        )
+        # Disable models if insufficient RAM/VRAM
+        models = ["tiny", "base", "small", "medium", "large", "turbo"]
+        self.model_menu['menu'].delete(0, 'end')
+        available_models = []
+        for model in models:
+            reqs = self.model_requirements[model]
+            if selected_device == "CPU":
+                # Exclude 'large' model on CPU due to high RAM requirements
+                if model == 'large':
+                    self.model_menu['menu'].add_command(
+                        label=f"{model} (Not available on CPU)",
+                        state="disabled"
+                    )
+                elif available_ram >= reqs['ram']:
+                    self.model_menu['menu'].add_command(
+                        label=model,
+                        command=tk._setit(self.model_var, model, self.update_controls)
+                    )
+                    available_models.append(model)
                 else:
-                    # Compare required VRAM
-                    if available_vram >= reqs['vram'] or task == "translate":
-                        self.model_menu['menu'].add_command(
-                            label=model,
-                            command=tk._setit(self.model_var, model, self.update_controls)
-                        )
-                        available_models.append(model)
-                    else:
-                        self.model_menu['menu'].add_command(
-                            label=f"{model} (Insufficient VRAM)",
-                            state="disabled"
-                        )
-
-            # Update model info label for the currently selected model
-            if self.model_var.get() not in available_models:
-                # Select the largest available model
-                if available_models:
-                    self.model_var.set(available_models[-1])  # Choose the largest model available
-                else:
-                    self.model_var.set("")  # No models available
-            model_name = self.model_var.get()
-            if model_name:
-                ram = self.model_info[model_name]["ram"]
-                speed = self.model_info[model_name]["speed"]
-                self.model_info_label.config(text=f"RAM: {ram}, Speed: {speed}")
+                    self.model_menu['menu'].add_command(
+                        label=f"{model} (Insufficient RAM)",
+                        state="disabled"
+                    )
             else:
-                self.model_info_label.config(text="No models available")
+                # Compare required VRAM
+                if available_vram >= reqs['vram'] or task == "translate":
+                    self.model_menu['menu'].add_command(
+                        label=model,
+                        command=tk._setit(self.model_var, model, self.update_controls)
+                    )
+                    available_models.append(model)
+                else:
+                    self.model_menu['menu'].add_command(
+                        label=f"{model} (Insufficient VRAM)",
+                        state="disabled"
+                    )
+        # Update model info label for the currently selected model
+        if self.model_var.get() not in available_models:
+            # Select the largest available model
+            if available_models:
+                self.model_var.set(available_models[-1])  # Choose the largest model available
+            else:
+                self.model_var.set("")  # No models available
+        model_name = self.model_var.get()
+        if model_name:
+            ram = self.model_info[model_name]["ram"]
+            speed = self.model_info[model_name]["speed"]
+            self.model_info_label.config(text=f"RAM: {ram}, Speed: {speed}")
+        else:
+            self.model_info_label.config(text="No models available")
 
         # Update English Only checkbox
         if task.lower() == "translate":
