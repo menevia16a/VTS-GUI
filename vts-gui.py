@@ -72,17 +72,17 @@ class WhisperApp(tk.Tk):
             "tiny": {"ram": "~1 GB", "speed": "~10x"},
             "base": {"ram": "~1 GB", "speed": "~7x"},
             "small": {"ram": "~2 GB", "speed": "~4x"},
-            "medium": {"ram": "~6 GB", "speed": "~2x"},
-            "large": {"ram": "~20 GB", "speed": "1x"},
+            "medium": {"ram": "~5 GB", "speed": "~2x"},
+            "large": {"ram": "~10 GB", "speed": "1x"},
             "turbo": {"ram": "~6 GB", "speed": "~8x"},
         }
         self.model_requirements = {
             "tiny": {"ram": 1, "vram": 1},
-            "base": {"ram": 2, "vram": 2},
-            "small": {"ram": 3, "vram": 3},
-            "medium": {"ram": 6, "vram": 5},
-            "large": {"ram": 20, "vram": 10},
-            "turbo": {"ram": 6, "vram": 5},
+            "base": {"ram": 1, "vram": 1},
+            "small": {"ram": 2, "vram": 2},
+            "medium": {"ram": 5, "vram": 5},
+            "large": {"ram": 10, "vram": 10},
+            "turbo": {"ram": 6, "vram": 6},
         }
         self.model_var = tk.StringVar()
         self.model_menu = tk.OptionMenu(self, self.model_var, *models, command=self.update_controls)
