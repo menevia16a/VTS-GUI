@@ -210,7 +210,7 @@ class WhisperApp(tk.Tk):
                     )
             else:
                 # Compare required VRAM
-                if available_vram >= reqs['vram'] or task == "translate":
+                if available_vram >= (reqs['vram'] - 1) or task == "translate":
                     self.model_menu['menu'].add_command(
                         label=model,
                         command=tk._setit(self.model_var, model, self.update_controls)
