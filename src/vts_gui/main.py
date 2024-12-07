@@ -26,6 +26,9 @@ from .pipeline.utils import (
     LANGUAGES
 )
 
+import importlib.resources as pkg_resources
+import vts_gui
+
 task_progress_messages = {
     'transcribe': 'Transcribing',
     'translate': 'Translating'
@@ -39,16 +42,13 @@ task_completed_messages = {
 class WhisperApp(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.title("VTS GUI v1.2")
+        self.title("VTS GUI v1.2.1")
         self.geometry("600x700")
-        
-        # Set the window icon if available
-        icon_name = "favicon.ico"
-        if os.path.isfile(icon_name):
-            self.iconbitmap(icon_name)
-        
+
+        with pkg_resources.path(vts_gui, "favicon.ico") as icon_path:
+            self.iconbitmap(icon_path)
+
         self.queue = queue.Queue()
-        
         self.models = ["tiny", "base", "small", "medium", "large", "turbo"]
         self.models_requirements = {
             "tiny": {"ram": 1, "vram": 1},
