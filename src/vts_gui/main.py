@@ -12,10 +12,10 @@ import time
 import torch
 
 # Import pipelines
-from pipeline.transcription_pipeline import TranscriptionPipeline
-from pipeline.translation_pipeline import TranslationPipeline
-from pipeline.postprocessing_pipeline import PostProcessingPipeline
-from pipeline.utils import (
+from .pipeline.transcription_pipeline import TranscriptionPipeline
+from .pipeline.translation_pipeline import TranslationPipeline
+from .pipeline.postprocessing_pipeline import PostProcessingPipeline
+from .pipeline.utils import (
     load_model_info,
     load_audio_duration,
     format_timestamp,

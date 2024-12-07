@@ -1,4 +1,4 @@
 Media/*
 Output/*
-vts_gui.egg-info/*
+src/vts_gui.egg-info/*
 dist/*
