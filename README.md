@@ -53,7 +53,7 @@ The resulting text segments are processed into an SRT format which can be saved 
 
 You can install *VTS-GUI* directly from GitHub using *pip*:
 
-`pip install git+https://github.com/menevia16a/vts_gui.git`
+`pip install git+https://github.com/menevia16a/VTS-GUI.git`
 
 This command will clone the repository, install the package along with its dependencies (including *Whisper*), and set up the vts-gui script so you can easily run the GUI
 ## Running the Application

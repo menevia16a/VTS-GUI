@@ -33,9 +33,9 @@ License: VTS GUI incorporates the following component:
         OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
         SOFTWARE.
         
-Project-URL: Homepage, https://github.com/menevia16a/vts_gui
-Project-URL: Source, https://github.com/menevia16a/vts_gui
-Project-URL: Tracker, https://github.com/menevia16a/vts_gui/issues
+Project-URL: Homepage, https://github.com/menevia16a/VTS-GUI
+Project-URL: Source, https://github.com/menevia16a/VTS-GUI
+Project-URL: Tracker, https://github.com/menevia16a/VTS-GUI/issues
 Classifier: Programming Language :: Python :: 3
 Classifier: Operating System :: OS Independent
 Requires-Python: >=3.9.9
@@ -99,7 +99,7 @@ The resulting text segments are processed into an SRT format which can be saved 
 
 You can install *VTS-GUI* directly from GitHub using *pip*:
 
-`pip install git+https://github.com/menevia16a/vts_gui.git`
+`pip install git+https://github.com/menevia16a/VTS-GUI.git`
 
 This command will clone the repository, install the package along with its dependencies (including *Whisper*), and set up the vts-gui script so you can easily run the GUI
 ## Running the Application

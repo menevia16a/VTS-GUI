@@ -23,9 +23,9 @@ classifiers = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/menevia16a/vts_gui"
-"Source" = "https://github.com/menevia16a/vts_gui"
-"Tracker" = "https://github.com/menevia16a/vts_gui/issues"
+"Homepage" = "https://github.com/menevia16a/VTS-GUI"
+"Source" = "https://github.com/menevia16a/VTS-GUI"
+"Tracker" = "https://github.com/menevia16a/VTS-GUI/issues"
 
 [project.scripts]
 vts-gui = "vts_gui.main:main"
