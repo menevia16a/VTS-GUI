@@ -28,10 +28,7 @@ The resulting text segments are processed into an SRT format which can be saved 
 
 - **OpenAI Whisper:** *Whisper* is the core engine for transcription and translation. It is automatically installed from *OpenAI's GitHub* repository when you install this package.
 
-- **Torch:** Required by *Whisper*. Installing this package will pull in *Torch* automatically. If you intend to use GPU acceleration, ensure you have a CUDA-compatible build of Torch.
-
-    - **CUDA Support:** You can install cuda support with this command `pip install torch==2.5.1+cu118 -f https://download.pytorch.org/whl/cu118
-`
+- **Torch:** Required by *Whisper*. Installing this package will pull in *Torch* automatically.
 
 - **ffmpeg & ffprobe:** These tools are required to extract media metadata (e.g. audio/video duration).
 

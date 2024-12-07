@@ -13,9 +13,12 @@ readme = "README.md"
 license = { file = "LICENSE" }
 requires-python = ">=3.9.9"
 dependencies = [
-  "torch==2.5.1",
+  "torch @ https://download.pytorch.org/whl/cu118/torch-2.5.1%2Bcu118-cp39-cp39-win_amd64.whl",
+  "torchvision",
+  "torchaudio",
   "openai-whisper @ git+https://github.com/openai/whisper.git"
 ]
+
 
 classifiers = [
   "Programming Language :: Python :: 3",
