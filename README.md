@@ -30,6 +30,9 @@ The resulting text segments are processed into an SRT format which can be saved 
 
 - **Torch:** Required by *Whisper*. Installing this package will pull in *Torch* automatically. If you intend to use GPU acceleration, ensure you have a CUDA-compatible build of Torch.
 
+    - **CUDA Support:** You can install cuda support with this command `pip install torch==2.5.1+cu118 -f https://download.pytorch.org/whl/cu118
+`
+
 - **ffmpeg & ffprobe:** These tools are required to extract media metadata (e.g. audio/video duration).
 
     - **Windows:** The best way to satisfy these packages is to install them using *Chocolately*
@@ -40,13 +43,10 @@ The resulting text segments are processed into an SRT format which can be saved 
         
         **2.** Install *ffmpeg* by running
             `choco install ffmpeg`
-    
-        **3.** Install *ffprobe* by running 
-            `choco install ffprobe`
 
     - **Linux:** Use yur distribution's package manager (e.g. `sudo apt install ffmpeg ffprobe` on Debian/Ubuntu).
 
-    **Note:** ffmpeg/ffprobe are external tools and not Python packages, so they must be installed at the system level before running VTS-GUI.
+    **Note:** ffmpeg is an external tools and not Python packages, so they must be installed at the system level before running VTS-GUI.
 ## Installation
 
 ### Install via GitHub (pip)

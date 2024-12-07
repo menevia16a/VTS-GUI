@@ -13,7 +13,7 @@ readme = "README.md"
 license = { file = "LICENSE" }
 requires-python = ">=3.9.9"
 dependencies = [
-  "torch==2.5.1+cu121",
+  "torch==2.5.1",
   "openai-whisper @ git+https://github.com/openai/whisper.git"
 ]
 
