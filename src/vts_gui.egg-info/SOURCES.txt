@@ -1,0 +1,16 @@
+LICENSE
+README.md
+pyproject.toml
+src/vts_gui/__init__.py
+src/vts_gui/main.py
+src/vts_gui.egg-info/PKG-INFO
+src/vts_gui.egg-info/SOURCES.txt
+src/vts_gui.egg-info/dependency_links.txt
+src/vts_gui.egg-info/entry_points.txt
+src/vts_gui.egg-info/requires.txt
+src/vts_gui.egg-info/top_level.txt
+src/vts_gui/pipeline/__init__.py
+src/vts_gui/pipeline/postprocessing_pipeline.py
+src/vts_gui/pipeline/transcription_pipeline.py
+src/vts_gui/pipeline/translation_pipeline.py
+src/vts_gui/pipeline/utils.py

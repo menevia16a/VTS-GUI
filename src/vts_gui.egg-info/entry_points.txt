@@ -1,0 +1,2 @@
+[console_scripts]
+vts-gui = vts_gui.main:main
