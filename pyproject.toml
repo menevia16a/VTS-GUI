@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vts-gui"
+version = "1.2.0"
+description = "VTS GUI: A Whisper-based transcription and translation tool for subtitles"
+authors = [
+  { name="Josiah Watkins", email="veilbreaker@voidmaster.xyz" }
+]
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.9.9"
+dependencies = [
+  "torch",
+  "openai-whisper"
+]
+
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/menevia16a/vts_gui"
+"Source" = "https://github.com/menevia16a/vts_gui"
+"Tracker" = "https://github.com/menevia16a/vts_gui/issues"
+
+[project.scripts]
+vts-gui = "vts_gui.main:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["vts_gui*"]
+exclude = ["Media*", "Output*"]

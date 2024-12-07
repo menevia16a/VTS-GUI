@@ -372,9 +372,9 @@ class WhisperApp(tk.Tk):
         start = format_timestamp(start_time + 1)
         end = format_timestamp(end_time)
         if task == "transcribe":
-            credit_text = "Transcribed by VTS Service"
+            credit_text = "Transcribed by VTS Service | Contact: veilbreaker@voidmaster.xyz"
         else:
-            credit_text = "Translated by VTS Service"
+            credit_text = "Translated by VTS Service | Contact: veilbreaker@voidmaster.xyz"
         file_handle.write(f"{index}\n{start} --> {end}\n{credit_text}\n\n")
 
     def check_queue(self):
@@ -382,7 +382,7 @@ class WhisperApp(tk.Tk):
             while True:
                 message = self.queue.get_nowait()
                 if isinstance(message, tuple):
-                    command, data = message
+                    command = message
                     if command == 'ENABLE_START_BUTTON':
                         self.start_button.config(state=tk.NORMAL)
                 else:
@@ -391,6 +391,9 @@ class WhisperApp(tk.Tk):
             pass
         self.after(100, self.check_queue)
 
-if __name__ == "__main__":
+def main():
     app = WhisperApp()
     app.mainloop()
+
+if __name__ == "__main__":
+    main()

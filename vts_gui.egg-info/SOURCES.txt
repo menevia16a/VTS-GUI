@@ -1,0 +1,9 @@
+LICENSE
+README.md
+pyproject.toml
+vts_gui.egg-info/PKG-INFO
+vts_gui.egg-info/SOURCES.txt
+vts_gui.egg-info/dependency_links.txt
+vts_gui.egg-info/entry_points.txt
+vts_gui.egg-info/requires.txt
+vts_gui.egg-info/top_level.txt
