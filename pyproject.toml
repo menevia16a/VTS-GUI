@@ -13,8 +13,8 @@ readme = "README.md"
 license = { file = "LICENSE" }
 requires-python = ">=3.9.9"
 dependencies = [
-  "torch",
-  "openai-whisper"
+  "torch==2.5.1+cu121",
+  "openai-whisper @ git+https://github.com/openai/whisper.git"
 ]
 
 classifiers = [
@@ -32,5 +32,5 @@ vts-gui = "vts_gui.main:main"
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["vts_gui*"]
+include = ["vts-gui*"]
 exclude = ["Media*", "Output*"]

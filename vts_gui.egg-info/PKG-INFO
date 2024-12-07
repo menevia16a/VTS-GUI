@@ -41,8 +41,8 @@ Classifier: Operating System :: OS Independent
 Requires-Python: >=3.9.9
 Description-Content-Type: text/markdown
 License-File: LICENSE
-Requires-Dist: torch
-Requires-Dist: openai-whisper
+Requires-Dist: torch==2.5.1+cu121
+Requires-Dist: openai-whisper@ git+https://github.com/openai/whisper.git
 
 ## VTS-GUI
 
