@@ -1,3 +1,3 @@
 @echo off
-start "" python vts-gui.py
+start "" python main.py
 exit
