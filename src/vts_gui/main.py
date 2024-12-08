@@ -7,6 +7,7 @@ from tkinter import filedialog, messagebox
 import threading
 import queue
 import os
+import sys
 import traceback
 import time
 import torch
@@ -42,7 +43,7 @@ task_completed_messages = {
 class WhisperApp(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.title("VTS GUI v1.2.1")
+        self.title("VTS GUI v1.2.2")
         self.geometry("600x700")
 
         with pkg_resources.path(vts_gui, "favicon.ico") as icon_path:
@@ -392,6 +393,14 @@ class WhisperApp(tk.Tk):
         self.after(100, self.check_queue)
 
 def main():
+    # Check command line arguments
+    if "--version" in sys.argv:
+        # Print version and exit
+        from . import __version__
+        print(__version__)
+        return
+
+    # Otherwise, launch the application
     app = WhisperApp()
     app.mainloop()
 
