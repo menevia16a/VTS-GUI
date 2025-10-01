@@ -150,6 +150,7 @@ class WhisperApp(tk.Tk):
 
         self.update_controls()
 
+    # limit the files that can be accepted
     def browse_file(self):
         file_path = filedialog.askopenfilename(
             filetypes=[("Audio/Video Files", "*.mp3 *.wav *.flac *.m4a *.mp4 *.mkv *.avi *.mov *.webm *.aac *.ogg *.wma")]
