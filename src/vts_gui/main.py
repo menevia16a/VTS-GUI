@@ -30,6 +30,7 @@ from .pipeline.utils import (
 import importlib.resources as pkg_resources
 import vts_gui
 
+# setup situational messaging
 task_progress_messages = {
     'transcribe': 'Transcribing',
     'translate': 'Translating'
