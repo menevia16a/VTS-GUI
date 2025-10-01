@@ -199,7 +199,7 @@ class WhisperApp(tk.Tk):
             else:
                 self.lang_menu.config(state=tk.NORMAL)
 
-        # Update Precision based on device
+        # Update Precision based on device since GPU can handle additional options
         if selected_device == "CPU":
             # Only FP32 on CPU
             self.precision_var.set("FP32")
