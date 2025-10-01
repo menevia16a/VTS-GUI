@@ -322,6 +322,7 @@ class WhisperApp(tk.Tk):
                 total_words = len(' '.join([s['text'] for s in segments]).split())
                 total_segments = len(segments)
 
+                # report back our processing details to be logged
                 efficiency_report = (
                     f"Processing time: {processing_time_str}\n"
                     f"Audio duration: {audio_duration_str}\n"
